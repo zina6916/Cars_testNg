@@ -29,17 +29,18 @@ public class carsTest {
         System.out.println("2.Click shop used");
 
 
-        //4. Check the following checkbox " Only show local listings"
-        WebElement checkbox = driver.findElement(By.xpath("//div[@class='usurp-filter-checkbox']//label[@data-tracking-value='deliveryType~local~Only show local listings']//span[@class='checkbox checkbox-icon size-18 icon-checkbox-unchecked3 text-gray-form-controls'] "));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", checkbox);
-        System.out.println("4.check box only local");
+
 
 //3. In the next page, clear the zipcode field and enter 22031
         driver.findElement(By.name("zip")).sendKeys(Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, Keys.BACK_SPACE, "22031");
         System.out.println("3.Choose 22031");
         Thread.sleep(500);
 
+        //4. Check the following checkbox " Only show local listings"
+        WebElement checkbox = driver.findElement(By.xpath("//div[@class='usurp-filter']//span[@title='Only show local listings']"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", checkbox);
+        System.out.println("4.check box only local");
 
 //5. Choose Tesla for a make
 //
@@ -206,14 +207,9 @@ List<Double> getPrice = new ArrayList<>();
         toCompare.sort(Comparator.reverseOrder());
         Assert.assertEquals(getPrice, toCompare);
         System.out.println("12. Descending order is verified: " + toCompare);
+driver.close();
 
 
-        // 14. From the dropdown menu, choose “Mileage: Low to High” option and verify that the
-        //results are sorted from highest to lowest mileage.
-
-        //15.  Find the last result and store its title, price and mileage (get the last result dynamically,
-        //i.e., your code should click on the last result regardless of how many results are there).
-        //Click on it to open the details about the result.
 
 
         }
